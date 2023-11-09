@@ -2,7 +2,11 @@
 
 This app is hosted using gh-pages at: https://s-c-meyer.github.io/meet/  
 
-This serverless, progressive web application was built using React with a test-driven development technique. It uses the Google Calendar to fetch upcoming events.  
+This serverless, progressive web application was built using React with a test-driven development technique. It uses the Google Calendar to fetch upcoming events. 
+
+## How will this app use serverless functions?
+
+This app will use serverless functions in many ways. One way is to authorize the client-side app to access Google Calendar, this is done by delievering the authorization token to the user. I will also use a serverless function to get the calendar events from Google Calendars API. This will be done by attaching the access token to the API request. 
 
 Below are the listed features and scenarios for this app, written out as user stories and in Gherkin syntax, respectively. 
 
