@@ -25,12 +25,22 @@
         <button id="getAuthUrlButton">Get OAuth URL</button>
         <p id="result"></p>
         <a id="authURL" href target="_blank">Click to authorize</a>
+
+        <h4>Step 2: Get your code and exchange for an access token</h4>
+        <p>After you've redirected back to your Meet App on Github, copy the code from the URI</p>
+        <br />
+        <label
+          >Code input 
+          <input id="code" type="text" value="" />
+        </label>
+        <button id="getToken">Get Token</button>
+        <p id="accessToken"></p>
     </main>
 
     <script type="text/javascript">
       const getAuthUrlButton = document.getElementById("getAuthUrlButton");
       const resultElement = document.getElementById("result");
-      const resultLink = getElementById("authURL");
+      const resultLink = document.getElementById("authURL");
       const getAuthURL = "https://ky08wb26r9.execute-api.us-east-2.amazonaws.com/dev/api/get-auth-url" //obtained from running serverless deploy 
 
       getAuthUrlButton.onclick = function () {
@@ -47,6 +57,30 @@
             resultLink.href = authUrl;
           });
       };
+
+      const codeValue = document.getElementById("code");
+      const getAccessToken = document.getElementById("getToken");
+      const accessTokenElement = document.getElementById("accessToken");
+      const getToken = "https://ky08wb26r9.execute-api.us-east-2.amazonaws.com/dev/api/token"
+
+      getAccessToken.onclick = function () {
+        let code = codeValue.value;
+
+        //if the authorization code is not URL-encoded, then URL-encode it
+        if (decodeURIComponent(code) === code) {
+          code = encodeURIComponent(codeValue.value);
+        }
+        const getTokenRequest = getToken + "/" + code;
+        console.log(getTokenRequest);
+        fetch(getTokenRequest)
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (json) {
+            accessTokenElement.innerText = JSON.stringify(json);
+          });
+      };
+
     </script>
   </body>
 </html>
