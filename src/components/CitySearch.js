@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const CitySearch = ({ allLocations }) => {
+const CitySearch = ({ allLocations, setCurrentCity }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [query, setQuery] = useState(""); //this query is a state for the input field, so you can access its value
   const [suggestions, setSuggestions] = useState([]);
+
+  useEffect(() => {
+    setSuggestions(allLocations);
+  }, [`${allLocations}`]); //using the ${} to stringify allLocations ensures that useEffect will go off of the string value of allLocations, and not their memory references. 
 
   const handleInputChange = (event) => {
     const value = event.target.value;
@@ -19,6 +23,7 @@ const CitySearch = ({ allLocations }) => {
     const value = event.target.textContent;
     setQuery(value);
     setShowSuggestions(false) //to hide the list
+    setCurrentCity(value);
   }
 
   return (
