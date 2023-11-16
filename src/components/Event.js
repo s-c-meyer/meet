@@ -6,10 +6,10 @@ const Event = ({ event }) => {
   const handleShowDetailsClicked = () => {
     setShowDetails(true);
     return (
-      <li>
+      <li className="event-expanded">
         <h4>{event.summary}</h4>
         <p>{event.created}</p>
-        <p>{event.location}</p>
+        <p className="event-location">{event.location}</p>
         <p id="description">{event.description}</p>
         <button className="detail" type="condense" onClick={handleHideDetailsClicked} >Hide Details</button>
       </li>
@@ -19,10 +19,10 @@ const Event = ({ event }) => {
   const handleHideDetailsClicked = () => {
     setShowDetails(false);
     return (
-      <li>
+      <li className="event">
         <h4>{event.summary}</h4>
         <p>{event.created}</p>
-        <p>{event.location}</p>
+        <p className="event-location">{event.location}</p>
         <button className="detail" type="expand" onClick={handleShowDetailsClicked} >Show Details</button>
       </li>
     )
@@ -30,19 +30,19 @@ const Event = ({ event }) => {
 
   if(!showDetails) {
     return(
-      <li>
+      <li className="event">
       <h4>{event.summary}</h4>
       <p>{event.created}</p>
-      <p>{event.location}</p>
+      <p className="event-location">{event.location}</p>
       <button className="detail" type="expand" onClick={handleShowDetailsClicked} >Show Details</button>
     </li>
     )
   } else{
     return (
-      <li>
+      <li className="event-expanded">
         <h4>{event.summary}</h4>
         <p>{event.created}</p>
-        <p>{event.location}</p>
+        <p className="event-location">{event.location}</p>
         <p id="description">{event.description}</p>
         <button className="detail" type="hide" onClick={handleHideDetailsClicked} >Hide Details</button>
       </li>

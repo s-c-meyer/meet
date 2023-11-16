@@ -6,6 +6,7 @@ const NumberOfEvents = ({ setCurrentNOE }) => {
 
   return(
     <div id='number-of-events'>
+      <p>Number of Events</p>
       <input 
         role='textbox'
         defaultValue={32}
