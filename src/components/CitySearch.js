@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const CitySearch = ({ allLocations, setCurrentCity }) => {
+const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [query, setQuery] = useState(""); //this query is a state for the input field, so you can access its value
   const [suggestions, setSuggestions] = useState([]);
@@ -17,6 +17,15 @@ const CitySearch = ({ allLocations, setCurrentCity }) => {
   
     setQuery(value);
     setSuggestions(filteredLocations);
+
+    //set InfoAlert text if necessary
+    let infoText;
+    if (filteredLocations.length === 0) { //if there are no suggestions to show to the user
+      infoText = "We cannot find the city you are looking for. Please try another city"
+    } else {
+      infoText = ""
+    }
+    setInfoAlert(infoText);
   };
 
   const handleItemClicked = (event) => {
@@ -24,6 +33,7 @@ const CitySearch = ({ allLocations, setCurrentCity }) => {
     setQuery(value);
     setShowSuggestions(false) //to hide the list
     setCurrentCity(value);
+    setInfoAlert(""); //this is so that if a user clicks See all cities, the alert will disappear. Otherwise, it would not disappear
   }
 
   return (

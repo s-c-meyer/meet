@@ -20,7 +20,7 @@ describe('<NumberOfEvents /> Component', () => {
   });
 
   test('number of events value changes upon input', async () => {
-    NumberOfEventsComponent.rerender(<NumberOfEvents setCurrentNOE={() => {}} />)
+    NumberOfEventsComponent.rerender(<NumberOfEvents setCurrentNOE={() => {}} setErrorAlert={() => {}} />)
     const numEventsTextBox = NumberOfEventsComponent.queryByRole('textbox');
     const user = userEvent.setup();
     await user.type(numEventsTextBox, '{backspace}{backspace}10'); //simulates the user typing two backspaces and then 10 in the number of events input

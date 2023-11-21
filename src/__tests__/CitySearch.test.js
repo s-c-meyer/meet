@@ -7,7 +7,7 @@ import App from "../App";
 describe('<CitySearch /> component', () => {
   let CitySearchComponent;
   beforeEach(() => {
-    CitySearchComponent = render(<CitySearch allLocations={[]} />); //dummy prop of allLocations={[]} was added to CitySearch
+    CitySearchComponent = render(<CitySearch allLocations={[]} setInfoAlert={() => { }} />); //dummy prop of allLocations={[]} was added to CitySearch
   });
 
   test('renders text input', () => {
@@ -34,7 +34,7 @@ describe('<CitySearch /> component', () => {
     const user = userEvent.setup();
     const allEvents = await getEvents();
     const allLocations = extractLocations(allEvents);
-    CitySearchComponent.rerender(<CitySearch allLocations={allLocations} />);
+    CitySearchComponent.rerender(<CitySearch allLocations={allLocations} setInfoAlert={() => { }} />);
 
     //user types "Berlin" in city textbox
     const cityTextBox = CitySearchComponent.queryByRole('textbox');
@@ -58,7 +58,7 @@ describe('<CitySearch /> component', () => {
     const user = userEvent.setup();
     const allEvents = await getEvents();
     const allLocations = extractLocations(allEvents);
-    CitySearchComponent.rerender(<CitySearch allLocations={allLocations} />);
+    CitySearchComponent.rerender(<CitySearch allLocations={allLocations} setInfoAlert={() => { }} />);
 
     //user types "Berlin" in city textbox
     const cityTextBox = CitySearchComponent.queryByRole('textbox');
@@ -78,7 +78,7 @@ describe('<CitySearch /> component', () => {
     const user = userEvent.setup();
     const allEvents = await getEvents();
     const allLocations = extractLocations(allEvents);
-    CitySearchComponent.rerender(<CitySearch allLocations={allLocations} setCurrentCity={() => { }} />); //passing a dummy prop for setCurrentCity is needed here because this test has no access to the App Component, so it has no idea that setCurrentCity is a function that exists
+    CitySearchComponent.rerender(<CitySearch allLocations={allLocations} setCurrentCity={() => { }} setInfoAlert={() => { }} />); //passing a dummy prop for setCurrentCity is needed here because this test has no access to the App Component, so it has no idea that setCurrentCity is a function that exists
 
     const cityTextBox = CitySearchComponent.queryByRole('textbox');
     await user.type(cityTextBox, "Berlin");
