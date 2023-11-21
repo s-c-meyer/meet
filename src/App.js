@@ -3,7 +3,7 @@ import CitySearch from "../src/components/CitySearch";
 import NumberOfEvents from "./components/NumberOfEvents";
 import { useEffect, useState } from "react";
 import { getEvents, extractLocations } from "./api";
-import { InfoAlert, ErrorAlert } from "./components/Alert";
+import { InfoAlert, ErrorAlert, WarningAlert } from "./components/Alert";
 
 import './App.css';
 
@@ -14,8 +14,14 @@ const App = function() {
   const [currentCity, setCurrentCity] = useState("See all cities");
   const [infoAlert, setInfoAlert] = useState("");
   const [errorAlert, setErrorAlert] = useState("");
+  const [warningAlert, setWarningAlert] = useState("");
 
   useEffect(() => { //populate the list as soon as the App Component is mounted
+    if (navigator.onLine) {
+      setWarningAlert("");
+    } else {
+      setWarningAlert("Warning: the displayed list of events has been loaded from the cache and may not be updated");
+    }
     fetchData();
   }, [currentCity, currentNOE]); //setting currentCity as a dependency ensures that fetchData is called whenever there is a change in the currentCity state
 
@@ -33,6 +39,7 @@ const App = function() {
       <div className="alerts-container"> 
         {infoAlert.length ? <InfoAlert text={infoAlert}/> : null} {/*we will use the infoAlert state to pass text to InfoAlert*/}
         {errorAlert.length ? <ErrorAlert text={errorAlert}/> : null}
+        {warningAlert.length ? <WarningAlert text={warningAlert}/> : null}
       </div>
       <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} setInfoAlert={setInfoAlert} />
       <NumberOfEvents setCurrentNOE={setCurrentNOE} setErrorAlert={setErrorAlert} />
