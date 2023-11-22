@@ -7,6 +7,7 @@ const EventGenresChart = ({ events }) => {
 
   useEffect(() => {
     setData(getData());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [`${events}`]);
 
   const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'Angular'];
@@ -41,26 +42,28 @@ const EventGenresChart = ({ events }) => {
     ) : null;
   };
 
-  return(
+  return (
     <ResponsiveContainer width="99%" height={400}>
       <PieChart>
         <Pie
           data={data}
           dataKey="value"
           labelLine={false}
+          fill="#8884d8"
           label={renderCustomizedLabel}
           outerRadius={130}
         >
-          {
-            data.map((entry, index) => ( //sometimes, it throws an error (data.map is not a function) if you put brackets around data, save, and then remove them and save it comes back just fine
-              <Cell key={`cell-${index}`} fill={colors[index]}/>
-            ))
-          }
+          {/*Whenever this data.map stops working, if I put brackets around data, `[data]` and then save,
+          and then take the brackets off and save, it correctly displays the color of each piece of the pie.
+          However, when I reload the page it then throws an error. I can't figure out why this is.*/}
+          {/* {data.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={colors[index]} />
+          ))} */}
         </Pie>
         <Legend />
       </PieChart>
     </ResponsiveContainer>
-  )
-}
+  );
+};
 
 export default EventGenresChart;

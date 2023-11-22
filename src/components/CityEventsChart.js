@@ -13,6 +13,7 @@ const CityEventsChart = ({ allLocations, events }) => {
 
   useEffect(() => {
     setData(getData());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [`${events}`]);
 
   const getData = () => {
