@@ -1,4 +1,4 @@
-# meet app
+# Meyer's Meet App :calendar:
 
 This app is hosted using gh-pages at: https://s-c-meyer.github.io/meet/
 
@@ -12,11 +12,14 @@ https://github.com/s-c-meyer/meet/assets/127259009/891991eb-a90a-4add-98c4-6e982
 
 This serverless, progressive web application was built using React with a test-driven development technique. It uses the Google Calendar to fetch upcoming events. 
 
-## How will this app use serverless functions?
+## Key Features
 
-This app will use serverless functions in many ways. One way is to authorize the client-side app to access Google Calendar, this is done by delievering the authorization token to the user. I will also use a serverless function to get the calendar events from Google Calendars API. This will be done by attaching the access token to the API request. 
+- Users may install the app on desktop or add app to smart phone home screen
+- Includes data visualization to see Event Topics and Locations at a glance
+- Works offline or in slow network conditions, using a service worker
+- Uses serverless functions for authorization
 
-Below are the listed features and scenarios for this app, written out as user stories and in Gherkin syntax, respectively. 
+# User Stories and Scenarios
 
 ## Feature 1: Filter Events by City 
 As a user  
