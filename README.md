@@ -1,6 +1,14 @@
 # meet app
 
-This app is hosted using gh-pages at: https://s-c-meyer.github.io/meet/  
+This app is hosted using gh-pages at: https://s-c-meyer.github.io/meet/
+
+*Please keep in mind you will have to login with Google Credentials to see the demo above.*
+
+If you would rather not login with your credentials there is a video demo below:
+
+
+https://github.com/s-c-meyer/meet/assets/127259009/891991eb-a90a-4add-98c4-6e982456e99d
+
 
 This serverless, progressive web application was built using React with a test-driven development technique. It uses the Google Calendar to fetch upcoming events. 
 
