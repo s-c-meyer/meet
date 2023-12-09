@@ -38,6 +38,9 @@ const App = function() {
 
   return (
     <div className="App"> 
+      <div>
+        <h1>Meyer's Meet App</h1>
+      </div>
       <div className="alerts-container"> 
         {infoAlert.length ? <InfoAlert text={infoAlert}/> : null} {/*we will use the infoAlert state to pass text to InfoAlert*/}
         {errorAlert.length ? <ErrorAlert text={errorAlert}/> : null}
@@ -46,7 +49,10 @@ const App = function() {
       <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} setInfoAlert={setInfoAlert} />
       <NumberOfEvents setCurrentNOE={setCurrentNOE} setErrorAlert={setErrorAlert} />
       <div className="charts-container">
-        <EventGenresChart events={events} />
+        <div className="pie-chart">
+          <EventGenresChart events={events} />
+        </div>
+        
         <CityEventsChart allLocations={allLocations} events={events} />
       </div>
       <EventList events={events} />

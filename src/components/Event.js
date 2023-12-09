@@ -3,12 +3,21 @@ import { useState } from "react";
 const Event = ({ event }) => {
   const [showDetails, setShowDetails] = useState(false);
 
+  const dateOptions = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  };
+  const dateToFormat = new Date(event.created);
+  const formattedDate = dateToFormat.toLocaleDateString('en-US', dateOptions);
+
   const handleShowDetailsClicked = () => {
     setShowDetails(true);
     return (
       <li className="event-expanded">
         <h4>{event.summary}</h4>
-        <p>{event.created}</p>
+        <p>{formattedDate}</p>
         <p className="event-location">{event.location}</p>
         <p id="description">{event.description}</p>
         <button className="detail" type="condense" onClick={handleHideDetailsClicked} >Hide Details</button>
@@ -21,7 +30,7 @@ const Event = ({ event }) => {
     return (
       <li className="event">
         <h4>{event.summary}</h4>
-        <p>{event.created}</p>
+        <p>{formattedDate}</p>
         <p className="event-location">{event.location}</p>
         <button className="detail" type="expand" onClick={handleShowDetailsClicked} >Show Details</button>
       </li>
@@ -32,7 +41,7 @@ const Event = ({ event }) => {
     return(
       <li className="event">
       <h4>{event.summary}</h4>
-      <p>{event.created}</p>
+      <p>{formattedDate}</p>
       <p className="event-location">{event.location}</p>
       <button className="detail" type="expand" onClick={handleShowDetailsClicked} >Show Details</button>
     </li>
@@ -41,7 +50,7 @@ const Event = ({ event }) => {
     return (
       <li className="event-expanded">
         <h4>{event.summary}</h4>
-        <p>{event.created}</p>
+        <p>{formattedDate}</p>
         <p className="event-location">{event.location}</p>
         <p id="description">{event.description}</p>
         <button className="detail" type="hide" onClick={handleHideDetailsClicked} >Hide Details</button>

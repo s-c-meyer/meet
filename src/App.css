@@ -107,10 +107,23 @@ input[type="number"] {
 .charts-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  margin-top: 1em;
 }
+
+#description {
+  margin: 1em auto;
+}
+
+
 
 @media (max-width : 768px) {
   .charts-container {
     grid-template-columns: 1fr;
+    line-height: 1em;
+  }
+
+  .pie-chart {
+    margin-bottom: 2em;
   }
 }
+

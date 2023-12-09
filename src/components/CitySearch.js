@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import OutsideClickHandler from "react-outside-click-handler";
 
 const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -38,15 +39,24 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
 
   return (
     <div id="city-search">
+      <OutsideClickHandler
+        display="contents"
+        onOutsideClick={() => {
+          setShowSuggestions(false);
+        }}
+      >
       <input
         type="text"
         className="city"
           placeholder="Search for a new city"
         value={query}
         onFocus={() => setShowSuggestions(true)}
+        //this makes it so that you cannot click on the list, which is not good
+        //also, only allows you to click out of the list, not to hit escape to get out. 
+        // onBlur={() => setShowSuggestions(false)}
         onChange={handleInputChange}
       />
-      {showSuggestions ? 
+      {showSuggestions ?
         <ul className="suggestions">
           {suggestions.map((suggestion) => {
             return <li onClick={handleItemClicked} key={suggestion}>{suggestion}</li>
@@ -57,18 +67,23 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
         </ul>
         : null
       }
+      </OutsideClickHandler>
+
+      {/* <OutsideClick>
+        {showSuggestions ?
+          <ul className="suggestions">
+            {suggestions.map((suggestion) => {
+              return <li onClick={handleItemClicked} key={suggestion}>{suggestion}</li>
+            })}
+            <li onClick={handleItemClicked} key="See all cities">
+              <b>See all cities</b>
+            </li>
+          </ul>
+          : null
+        }
+      </OutsideClick> */}
     </div>
   )
 };
-
-// const handleInputChange = (event) => {
-//   const value = event.target.value;
-//   const filteredLocations = allLocations ? allLocations.filter((location) => {
-//     return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
-//   }) : [];
-
-//   setQuery(value);
-//   setSuggestions(filteredLocations);
-// }
 
 export default CitySearch;
